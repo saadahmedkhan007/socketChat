@@ -1,0 +1,28 @@
+<section class="chat__section">
+    <h1>{{username}}</h1>
+    <div class="brand">
+        <img height="40" src="../../assets/wassup.png" alt="">
+        <h1>Wassup</h1>
+        <div class="chatlistMain">
+            <h1>Users Online</h1>
+            <div *ngFor="let button of buttons" class="lister">
+                <button value={{button[0]}} (click)="sendMessage($event, 'single')">{{button[1]}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="message__area">
+        <div *ngFor="let msgObj of messages" class="messages">
+            <div class="message">
+                <h4>{{msgObj.name}}</h4>
+                <p>{{msgObj.mes}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
+        <button class="mainsend" (click)="sendMessage($event)">Send to All</button>
+    </div>
+
+
+</section>

@@ -1,119 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+.parent {
+    position: relative;
+    margin: 0%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgba(169, 169, 169, 0.536);
 }
 
-
-body {
-    /* display: flex;
-    align-items: center;
+.wazzupImg {
+    display: flex;
     justify-content: center;
-    min-height: 100vh; */
-    background: #F8F8F8;
-    font-family: 'Roboto', sans-serif;
 }
 
-.chat__section {
-    position: relative;
-    width: 800px;
-    max-width: 90%;
-    background: #fff;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    // display: flex;
+.wazzupImg img {
+    width: 58px;
 }
 
-.brand {
-    padding: 20px;
-    background: #f1f1f1;
-    display: flex;
-    align-items: center;
-}
 
-.brand h1 {
-    text-transform: uppercase;
-    font-size: 20px;
-    color: #444;
-    margin-left: 10px;
-}
 
-.message__area {
-    height: 500px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    padding-top: 40px;
-    justify-content: end;
-}
-
-textarea {
-    width: 37%;
-    border: none;
-    padding: 20px;
-    font-size: 16px;
-    outline: none;
-    background: #FBFBFB;
-
-    bottom: 0px;
-}
-
-.message {
-    padding: 20px;
-    border-radius: 4px;
-    margin-bottom: 40px;
-    max-width: 300px;
-    position: relative;
-}
-
-.incoming {
-    background: #8F8BE8;
-    color: #fff;
-}
-
-.outgoing {
-    background: #e9eafd;
-    color: #787986;
-    margin-left: auto;
-}
-
-.message h4 {
-    position: absolute;
-    top: 3px;
-    left: 0;
-    color: #333;
-    font-size: 14px;
-}
-
-.chatlist {
+.message-container {
+    width: 95%;
     border: 1px solid black;
-    width: 17em;
-    /* width: 11em;" */
+    height: 526px;
 }
 
-// .lister {
-//     display: flex;
-//     flex-direction: column;
-// }
-
-.liveuser {
-    cursor: pointer;
+.col-3Custom {
+    flex: 0 0 auto;
+    width: 19%;
 }
 
-.chatlistMain {
-    display: flex;
-    // justify-content: center; 
-    padding-left: 32vw;
-    flex-direction: column;
-
-}
-
-.chatlistMain button {
-    width: 100px;
-}
-
-.mainsend {
-    width: 20%;
+.chatter {
+    position: absolute;
+    bottom: 29px;
 }

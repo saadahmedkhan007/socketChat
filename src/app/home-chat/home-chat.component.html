@@ -1,28 +1,66 @@
-<section class="chat__section">
-    <h1>{{username}}</h1>
-    <div class="brand">
-        <img height="40" src="../../assets/wassup.png" alt="">
-        <h1>Wassup</h1>
-        <div class="chatlistMain">
-            <h1>Users Online</h1>
-            <div *ngFor="let button of buttons" class="lister">
-                <button value={{button[0]}} (click)="sendMessage($event, 'single')">{{button[1]}}</button>
-            </div>
-        </div>
-    </div>
-    <div class="message__area">
-        <div *ngFor="let msgObj of messages" class="messages">
-            <div class="message">
-                <h4>{{msgObj.name}}</h4>
-                <p>{{msgObj.mes}}</p>
-            </div>
-        </div>
-    </div>
+<section class="parent">
+    <div class="wazzupImg">
 
-    <div>
-        <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
-        <button class="mainsend" (click)="sendMessage($event)">Send to All</button>
+        <img src="../../assets/wassup.png">
+        <h2>Wassaup</h2>
     </div>
+    <section class="roomCreate mt-2">
+        <div class="row">
+            <div class="col-3Custom">
+                <h3>Create a room:</h3>
+            </div>
+
+            <div class="col-3Custom">
+
+                <input name="" id="roomName">
+            </div>
+
+            <div class="col-3Custom">
+
+                <button (click)="createRoom()">Create room</button>
+            </div>
+            <div class="col-3Custom display-flex flex-direction-column">
+                <h2>Room List</h2>
+                <div *ngFor="let list of roomList">
+
+                    <button value={{list[0]}} (click)="sendToGroup($event,'group')">{{list[1]}}</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <h3>Users Online:</h3>
+            </div>
+            <div class="col-3Custom">
+
+                <div class="display-flex flex-direction-column" *ngFor="let button of buttons" class="lister">
+                    <button value={{button[0]}} (click)="sendMessage($event, 'single')">{{button[1]}}</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="message-container">
+
+            <div *ngFor="let msgObj of messages" class="messages">
+                <div class="message">
+                    <h4>{{msgObj.name}}</h4>
+                    <p>{{msgObj.mes}}</p>
+                </div>
+            </div>
+            <div class="chatter">
+                <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
+                <button class="mainsend" (click)="sendMessage($event)">Send to All</button>
+            </div>
+        </div>
+
+
+
+
+    </section>
 
 
 </section>

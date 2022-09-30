@@ -3,19 +3,43 @@
     margin: 0%;
     height: 100vh;
     overflow: hidden;
-    background-color: rgba(169, 169, 169, 0.536);
+    background-color: rgba(226, 162, 24, 0.536);
 }
 
-.wazzupImg {
+// .wazzupImg {
+//     display: flex;
+//     justify-content: center;
+// }
+
+// .wazzupImg img {
+//     width: 58px;
+// }
+
+
+  .Participants{
     display: flex;
-    justify-content: center;
-}
+    flex-direction: column;
+    margin-top: 6%;
+    margin-left: 4%;
+    border: 3px solid black;
 
-.wazzupImg img {
-    width: 58px;
-}
+  }
 
+  .Participants button{
+    margin: 10px;
+  }
 
+  .Groups{
+    display: flex;
+    flex-direction: column;
+    margin-top: 6%;
+    margin-left: 4%;
+    border: 3px solid black;
+  }
+
+  .Groups button{
+    margin: 5px;
+  }
 
 .message-container {
     width: 95%;
@@ -31,4 +55,21 @@
 .chatter {
     position: absolute;
     bottom: 29px;
+}
+
+#roomName{
+  width: 24%;
+  margin-left: auto;
+  border-radius: 10px;
+}
+
+.groupCreate{
+  display: flex;
+  // justify-content: space-between;
+}
+
+
+.heading{
+  display: flex;
+  justify-content: center;
 }

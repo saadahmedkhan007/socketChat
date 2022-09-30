@@ -1,0 +1,59 @@
+.parent{
+  position: relative;
+  margin: 0%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(226, 162, 24, 0.536);
+
+}
+
+
+.header{
+  display: flex;
+  justify-content: center;
+}
+
+.chatCont{
+  border: 1px solid black;
+  height: 70%;
+  background: white;
+  position: relative;
+  @media (max-width:579px) {
+
+    width: 60%;
+
+ }
+}
+
+
+.chatter{
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+  margin-left: 7%;
+  @media (max-width:579px) {
+
+    width: 70%;
+
+ }
+
+}
+
+
+.chatter button{
+
+  margin-bottom: 15px;
+}
+
+
+#textarea{
+  width: 92%;
+    /* height: 16%; */
+    height: 2em;
+}
+
+.send{
+  height: 34px;
+}

@@ -11,7 +11,7 @@
 
     <div  *ngFor="let button of buttons" class="participants display-flex flex-dirention-column">
 
-        <button routerLink="chat" class="btn btn-primary" value={{button[0]}} (click)="sendMessage($event, 'single')">{{button[1]}}</button>
+        <button routerLink="chat" class="btn btn-primary" value={{button[0]}} (click)="openChat($event, 'messageOne')">{{button[1]}}</button>
           </div>
 
     </section>
@@ -30,9 +30,13 @@
 
 
       <div *ngFor="let list of roomList">
-      <button routerLink="chat" class="btn btn-success" value={{list[0]}} (click)="joinGroup($event,'group')">{{list[1]}}</button>
+      <button routerLink="chat" class="btn btn-success" value={{list[0]}} (click)="openChat($event,'messageGroup')">{{list[1]}}</button>
     </div>
 
+      <div class="">
+
+        <button routerLink="chat" (click)="openChat($event,'message')">sendALL</button>
+      </div>
     </section>
 
 

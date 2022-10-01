@@ -1,61 +1,81 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { io, Socket } from "socket.io-client";
-const ip = '192.168.1.113'
+import { io, Socket } from 'socket.io-client';
+import { SiblingCommunicateService } from '../sibling-communicate.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit ,AfterViewInit{
-  userList: any
-  username: any
-  textarea: any
+export class ChatComponent implements OnInit, AfterViewInit {
+  id: string;
+  userList: any;
+  name: any;
+  username: any;
+  textarea: any;
   socket: Socket;
-  messageArea: any
+  emitter: any;
+  messageArea: any;
+  event = false;
   messages = [];
-  constructor() { }
-
+  constructor(private sibService: SiblingCommunicateService) {}
 
   ngOnInit(): void {
-    this.socket = io(`http://${ip}:3000`);
-  }
+    this.sibService.currentData.subscribe((data: any) => {
+      console.log(data);
+      this.id = data.id;
+      this.name = data.name;
+      this.socket = data.socket;
+      this.emitter = data.emitter;
+      this.username = data.username;
 
+      if (!this.event) {
+        this.socket.on('group-receive', (msg) => {
+          this.appendMessage(msg, this.name);
+          // scrollToBottom()
+        });
+
+        this.socket.on('peer-receive', (msg) => {
+          this.appendMessage(msg, this.name);
+          // scrollToBottom()
+        });
+
+        this.event = true;
+      }
+    });
+  }
 
   ngAfterViewInit() {
-
-    this.textarea = document.querySelector('#textarea')
-    this.messageArea = document.querySelector('.message__area')
+    this.textarea = document.querySelector('#textarea');
+    this.messageArea = document.querySelector('.message__area');
   }
 
-  sendInGroup(evt: any, toWhom = "all") {
-    let msg = this.textarea.value
-    let id = evt.target.value;
-    console.log(msg);
-
+  send() {
+    let msg = this.textarea.value;
+    // console.log('from send message:'+msg);
+    // this.messages = msg
     if (msg) {
-
       let msgObj = {
-        id: id,
-        user: this.username,
-        mes: msg
-      }
+        id: this.id,
+        user: this.name,
+        mes: msg,
+      };
+
+      console.log(msgObj);
+
       // Append
-      this.appendMessage(msgObj, 'outgoing')
-      this.textarea.value = ''
+      this.appendMessage(msgObj, this.username);
+      this.textarea.value = '';
       // scrollToBottom()
 
       // Send to server
-      if (toWhom == "single") {
-        this.socket.emit('messageOne', msgObj)
-      } else
-        this.socket.emit('message', msgObj)
-    }
 
+      this.socket.emit(this.emitter, msgObj);
+    }
   }
 
   appendMessage(msg, type) {
-    console.log("appendMessage(): ", msg, type)
     this.messages.push({ name: msg.user, mes: msg.mes, type: type });
-  }
 
+    console.log('from appendMessage:', this.messages);
+  }
 }

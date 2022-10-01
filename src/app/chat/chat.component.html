@@ -2,14 +2,15 @@
 
       <div class="header mt-4">
               <h2>Rooms Name</h2>
-      </div>
+                </div>
 
-      <div class="chatCont container">
+                <div class="chatCont container">
+        <h3>You:{{name}}</h3>
 
           <div *ngFor="let msgObj of messages" class="messages">
               <div class="message">
-                  <h4>{{msgObj.name}}</h4>
-                  <p>{{msgObj.mes}}</p>
+                  <!-- <h4>{{msgObj.name}}</h4> -->
+                  <p>{{msgObj.type}}:{{msgObj.mes}}</p>
               </div>
           </div>
 
@@ -18,7 +19,7 @@
         </div>
         <div class="chatter container ">
             <textarea id="textarea" cols="30" rows="1" placeholder="Write a message..."></textarea>
-            <button class="btn btn-primary send" (click)="sendInGroup($event)">Send</button>
+            <button class="btn btn-primary send" (click)="send()">Send</button>
         </div>
 
   </div>

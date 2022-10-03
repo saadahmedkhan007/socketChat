@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SiblingCommunicateService {
+  private data = new BehaviorSubject('');
+  currentData = this.data.asObservable();
 
-  private data = new BehaviorSubject('')
-  currentData = this.data.asObservable()
-
-  constructor() { }
+  constructor() {}
 
   setData(data) {
-    this.data.next(data)
+    this.data.next(data);
   }
-
 }

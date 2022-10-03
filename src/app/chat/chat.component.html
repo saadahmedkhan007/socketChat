@@ -1,16 +1,17 @@
   <div class="parent">
 
       <div class="header mt-4">
-              <h2>Rooms Name</h2>
+        <button routerLink="" class="btn btn-primary">back</button>
+              <h2>Rooms Name:{{roomname[1]}}</h2>
                 </div>
 
                 <div class="chatCont container">
-        <h3>You:{{name}}</h3>
+        <!-- <h3>You:{{name}}</h3> -->
 
           <div *ngFor="let msgObj of messages" class="messages">
-              <div class="message">
+              <div>
                   <!-- <h4>{{msgObj.name}}</h4> -->
-                  <p>{{msgObj.type}}:{{msgObj.mes}}</p>
+                  <p>{{msgObj.name}}:{{msgObj.mes}}</p>
               </div>
           </div>
 

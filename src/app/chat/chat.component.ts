@@ -16,7 +16,16 @@ export class ChatComponent implements OnInit, AfterViewInit {
   emitter: any;
   messageArea: any;
   event = false;
+  roomname: any;
   messages = [];
+  isNotSame = false;
+  i = -1;
+  id2 = 2;
+  // constructor() {
+  //
+  //   }
+  // }
+
   constructor(private sibService: SiblingCommunicateService) {}
 
   ngOnInit(): void {
@@ -27,6 +36,9 @@ export class ChatComponent implements OnInit, AfterViewInit {
       this.socket = data.socket;
       this.emitter = data.emitter;
       this.username = data.username;
+      this.roomname = data.roomL.toString().split(',');
+      // this.i = this.i + 2;
+      console.log('this is socket:' + this.socket['id']);
 
       if (!this.event) {
         this.socket.on('group-receive', (msg) => {
@@ -36,6 +48,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
         this.socket.on('peer-receive', (msg) => {
           this.appendMessage(msg, this.name);
+          // scrollToBottom()
+        });
+
+        this.socket.on('rmes', (msg) => {
+          // console.log(msg);
+
+          this.appendMessage(msg, 'incoming');
           // scrollToBottom()
         });
 
@@ -77,5 +96,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.messages.push({ name: msg.user, mes: msg.mes, type: type });
 
     console.log('from appendMessage:', this.messages);
+    if (this.messages[0].name !== this.messages[1].name) {
+      this.isNotSame = true;
+    }
   }
 }

@@ -35,7 +35,7 @@ export class HomeChatComponent implements OnInit, AfterViewInit {
 
     this.socket.on('roomlist', (arrayRlist) => {
       this.roomList = arrayRlist;
-      // console.log('from roomList' + this.roomList);
+      console.log('This is from roomList:' + this.roomList);
     });
   }
 
@@ -45,12 +45,6 @@ export class HomeChatComponent implements OnInit, AfterViewInit {
     this.roomArea = document.querySelector('#roomName');
 
     // Recieve messages
-    this.socket.on('rmes', (msg) => {
-      // console.log(msg);
-
-      this.appendMessage(msg, 'incoming');
-      // scrollToBottom()
-    });
 
     this.socket.on('userActiveList', (msg) => {
       this.buttons = msg;
@@ -87,6 +81,7 @@ export class HomeChatComponent implements OnInit, AfterViewInit {
       username: this.username,
       name: evt.target.innerText,
       socket: this.socket,
+      roomL: this.roomList,
       emitter,
     });
 
@@ -95,6 +90,10 @@ export class HomeChatComponent implements OnInit, AfterViewInit {
         this.groups[id] = '1';
         this.socket.emit('joinRoom', id);
       }
+    }
+
+    if (emitter == 'message') {
+      this.socket.emit('message', id);
     }
   }
 

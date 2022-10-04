@@ -10,7 +10,7 @@
 
 .header{
   display: flex;
-  justify-content: center;
+  // justify-content: center;
 }
 
 .chatCont{
@@ -56,4 +56,20 @@
 
 .send{
   height: 34px;
+}
+
+.incoming{
+  background-color: rgba(224, 203, 107, 0.932);
+  text-align: right;
+}
+
+
+
+.outgoing{
+  background-color: rgb(205, 255, 7);
+}
+
+.bbutton{
+  margin-right: 38%;
+  margin-left: 5%;
 }

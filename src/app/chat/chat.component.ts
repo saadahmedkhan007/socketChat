@@ -19,6 +19,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   roomname: any;
   messages = [];
   isNotSame = false;
+  chatTitle;
   i = -1;
   id2 = 2;
   // constructor() {
@@ -36,18 +37,20 @@ export class ChatComponent implements OnInit, AfterViewInit {
       this.socket = data.socket;
       this.emitter = data.emitter;
       this.username = data.username;
-      this.roomname = data.roomL.toString().split(',');
+      this.roomname = data.roomL;
+      this.chatTitle = data.chatTitle;
+      // this.roomname ??= [];
       // this.i = this.i + 2;
       console.log('this is socket:' + this.socket['id']);
 
       if (!this.event) {
         this.socket.on('group-receive', (msg) => {
-          this.appendMessage(msg, this.name);
+          this.appendMessage(msg, 'incoming');
           // scrollToBottom()
         });
 
         this.socket.on('peer-receive', (msg) => {
-          this.appendMessage(msg, this.name);
+          this.appendMessage(msg, 'incoming');
           // scrollToBottom()
         });
 
@@ -82,7 +85,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
       console.log(msgObj);
 
       // Append
-      this.appendMessage(msgObj, this.username);
+      this.appendMessage(msgObj, 'outgoing');
       this.textarea.value = '';
       // scrollToBottom()
 
@@ -96,8 +99,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.messages.push({ name: msg.user, mes: msg.mes, type: type });
 
     console.log('from appendMessage:', this.messages);
-    if (this.messages[0].name !== this.messages[1].name) {
-      this.isNotSame = true;
-    }
+    // if (this.messages[0].name !== this.messages[1].name) {
+    //   this.isNotSame = true;
+    // }
   }
 }

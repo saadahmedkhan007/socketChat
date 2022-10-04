@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
+import { environment } from 'src/environments/environment';
 import { SiblingCommunicateService } from '../sibling-communicate.service';
 
 const ip = '192.168.1.113';
@@ -76,13 +77,16 @@ export class HomeChatComponent implements OnInit, AfterViewInit {
   openChat(evt: any, emitter) {
     // let msg = this.textarea.value
     let id = evt.target.value;
+    console.log(evt);
+
     this.sendDataToService({
       id,
       username: this.username,
       name: evt.target.innerText,
       socket: this.socket,
-      roomL: this.roomList,
+      roomL: evt.target.innerText,
       emitter,
+      chatTitle: evt.target.innerText,
     });
 
     if (emitter == 'messageGroup') {
